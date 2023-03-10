@@ -59,17 +59,31 @@ public class Banco {
         else if(tipo == "CP"){
             this.setSaldo(100);
         }
+        System.out.println("Conta aberta com sucesso!");
     }
 
     public void fecharConta() {
         setStatus(false);
+        if (this.getSaldo()>0){
+            System.out.println("Conta não pode ser fechada porque ainda tem dinheiro");
+        }
+        else if (this.getSaldo()<0) {
+            System.out.println("Conta não pode ser fechada pois o saldo está negativo");
+        }
+        
+        System.out.println("Conta fechada");
     }
     
-    public void depositar() {
-        setSaldo(saldo);
+    public void depositar(float v) {
+        if (this.status == true){
+            setSaldo(getSaldo()+v);
+        }
     }
 
-    public void sacar() {
+    public void sacar(float saque) {
+        if (this.status == true){
+            setSaldo(getSaldo()-saque);
+        }
     }
     
 }
